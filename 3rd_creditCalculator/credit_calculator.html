@@ -1,0 +1,143 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="credit_calculator.css" />
+</head>
+<body>
+  <div class="cal_all">
+
+    <div class="cal">
+      <!-- 학점 입력 -->
+      <div class="cal_tb">
+
+        <!-- 제목 -->
+        <div class="title">
+          학점 계산기
+        </div>
+
+        <!-- 학점 입력 폼 범주 -->
+        <table class="tb_left">
+          <colgroup>
+            <col style="width:30%;" />
+            <col style="width:15%;" />
+            <col style="width:10%;" />
+            <col style="width:10%;" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">과목명</th>
+              <th scope="col">점수</th>
+              <th scope="col">학점</th>
+              <th scope="col">전공</th>
+            </tr>
+          </thead>
+        </table>
+
+        <!-- 학점 입력 폼 -->
+        <div class="tb_detail">
+
+          <table class="tb_left">
+
+            <colgroup>
+              <col style="width:30%;" />
+              <col style="width:15%;" />
+              <col style="width:10%;" />
+              <col style="width:10%;" />
+            </colgroup>
+
+            <tbody>
+              <tr>
+
+                <td class="_subject">
+                  <input type="text" class="input_text end" title="과목" id="subjectInput">
+                </td>
+
+                <td>
+                  <select title="과목별 점수선택" style="width:100%" id="gradeInput">
+                    <option value="-1">선택</option>
+                    <option value="4.5">A+</option>
+                    <option value="4">A</option>
+                    <option value="3.5">B+</option>
+                    <option value="3">B</option>
+                    <option value="2.5">C+</option>
+                    <option value="2">C</option>
+                    <option value="1.5">D+</option>
+                    <option value="1">D</option>
+                    <option value="0">F</option>
+                  </select>
+                </td>
+
+                <td>
+                  <input type="text" class="input_text end" title="학점" maxlength="2" style="ime-mode:disabled;" id="creditInput">
+                </td>
+
+                <td class="checkbox">
+                  <input type="checkbox" title="전공" class="checkbox" id="majorInput">
+                </td>
+
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+        <!-- 과목추가 버튼 -->
+        <div class="cal_btn">
+          <button type="button" class="btn_account_credit" onClick="addSubject()">과목추가</button>
+        </div>
+      </div>
+
+      <!-- 학점을 입력하면 저장되는 곳 -->
+      <div class="cal_save">
+        <div class="title">
+          입력 완료된 과목
+        </div>
+        <table class="tb_left">
+          <colgroup>
+            <col style="width:30%;" />
+            <col style="width:15%;" />
+            <col style="width:10%;" />
+            <col style="width:10%;" />
+            <col style="width:10%;" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th scope="col">과목명</th>
+              <th scope="col">점수</th>
+              <th scope="col">학점</th>
+              <th scope="col">전공</th>
+              <th scope="col" style="border:none; background-color:#FFF;">삭제</th>
+            </tr>
+          </thead>
+        </table>
+        <div class="tb_detail">
+          <table class="tb_left">
+            <colgroup>
+              <col style="width:30%;" />
+              <col style="width:15%;" />
+              <col style="width:10%;" />
+              <col style="width:10%;" />
+              <col style="width:10%;" style="border:none;"/>
+            </colgroup>
+            <tbody id="result">
+            </tbody>
+          </table>
+        </div>
+        <div class="cal_btn">
+          <button type="button" class="btn_reset_credit" onclick="deleteAll();">초기화하기</button>
+          <p style="color:red; font-size:12px; margin:6px 0 0 0;">* 저장된 결과가 모두 삭제됩니다.</p><br />
+        </div>
+      </div>
+
+      <!-- 학점 결과가 나오는 곳 -->
+      <div class="cal_result">
+        <dl>
+          <dt>총 평점</dt>
+          <dd id="all_grade"></dd>
+          <dt>전공평점</dt>
+          <dd id="major_grade"></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="credit_calculator.js"></script>
+</body>

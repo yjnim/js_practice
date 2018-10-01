@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+
+.cal {
+  width:75%;
+  min-height:150px;
+  padding:5px 20px 10px 20px;
+  left:30%;
+  transform: translate(15%,0);
+}
+
+.title {
+  font-family: 'Noto Sans KR', sans-serif;
+  text-align:center;
+  margin-bottom: 15px;
+}
+
+/* .cal_top {
+  width:100%;
+  height:31px;
+}
+
+
+.cal .cal_top a.cal_pr {
+    position: relative;
+    top: 0;
+    float:left;
+} */
+
+
+.cal_tb {
+  width:35%;
+  padding:10px;
+  float:left;
+}
+
+.tb_left {
+  position:relative;
+  width:100%;
+  float:left;
+}
+
+.tb_detail {
+  width:100%;
+}
+
+._subject {
+  height:24px;
+}
+
+/* .cal .cal_tb {
+  border:1px solid #e5e5e5;
+  border-width:1px;
+} */
+
+table tbody tr td {
+    border: 1px solid #ededed;
+    border-width: 1px;
+    font-family: Malgun Gothic,sans-serif;
+    font-size: 12px;
+    text-align:center;
+}
+
+table th {
+    height: 24px;
+    padding: 2px 0 0;
+    border: 1px solid #ededed;
+    border-width: 1px;
+    background-color: #fcfcfc;
+    font-weight: normal;
+    color: #777;
+    text-align: center;
+    font-size: 11px;
+}
+
+table td .input_text {
+    width: 97%;
+    padding: 3px 0 0;
+    border: 0;
+    background: none;
+    font-size: 12px;
+    line-height: 19px;
+    font-family: '굴림',Gulim,AppleGothic,sans-serif;
+    vertical-align: top;
+  }
+
+.checkbox {
+    /* padding-left:7.5px; */
+    border: 1px solid #ededed;
+    text-align:center;
+}
+
+.cal_btn {
+    position:relative;
+    float:left;
+    width:100%;
+    margin: 9px 0 10px;
+    text-align: center;
+}
+
+.btn_account_credit {
+    margin-top:15px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.btn_reset_credit {
+    margin-top:15px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.cal_save {
+    width:40%;
+    padding:10px;
+    float:left;
+    min-height:150px;
+}
+
+.cal_result {
+    width:30%
+    float:left;
+    padding:10px;
+    min-height:150px;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align:center;
+}
+
+dt {
+  font-size:14px;
+}
