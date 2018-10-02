@@ -115,7 +115,7 @@ table td .input_text {
 }
 
 .cal_result {
-    width:30%
+    width:17%;
     float:left;
     padding:10px;
     min-height:150px;
@@ -125,4 +125,9 @@ table td .input_text {
 
 dt {
   font-size:14px;
+}
+
+#cal_json {
+  width: 30%;
+  float:right;
 }

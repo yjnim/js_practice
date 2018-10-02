@@ -82,7 +82,7 @@
 
         <!-- 과목추가 버튼 -->
         <div class="cal_btn">
-          <button type="button" class="btn_account_credit" onClick="addSubject()">과목추가</button>
+          <button type="button" class="btn_account_credit" onClick="addSubject();">과목추가</button>
         </div>
       </div>
 
@@ -136,6 +136,12 @@
           <dt>전공평점</dt>
           <dd id="major_grade"></dd>
         </dl>
+        <button type="button" class="btn_reset_credit" onclick="tableToJSON();">JSON 변환</button>
+        <p style="color:red; font-size:12px; margin:6px 0 0 0;">* 저장된 결과가 JSON 형식으로 변환됩니다.</p><br />
+      </div>
+
+      <!-- json 변환될 곳 -->
+      <div id="cal_json">
       </div>
     </div>
   </div>

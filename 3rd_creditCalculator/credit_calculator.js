@@ -5,16 +5,13 @@ var creditInput = document.getElementById('creditInput');
 var majorInput = document.getElementById('majorInput');
 
 
-//과목명 규칙 - 숫자만 들어갈 경우 불통과
-var subjectRule = /^[0-9]*$/;
-
-//학점 규칙 - 숫자만 입력해야 함
-var creditRule = /^[0-9]*$/;
+//과목명과 학점 규칙 검사에 쓰일 정규식
+var inputRule = /^[0-9]*$/;
 
 //과목 추가
 function addSubject() {
 
-  if (subjectRule.test(subjectInput.value)) {
+  if (inputRule.test(subjectInput.value)) {
     //과목명 규칙 검사 - 과목명 규칙에 맞아들어갈 경우 알림을 띄워준 다음 입력한 과목명을 선택하고 false로 리턴
     alert('과목명은 숫자만으로 입력될 수 없습니다.');
     subjectInput.select();
@@ -32,7 +29,7 @@ function addSubject() {
     creditInput.focus();
     return false;
 
-  } else if (!creditRule.test(creditInput.value)) {
+  } else if (!inputRule.test(creditInput.value)) {
     //학점 입력란에 숫자가 아닌 문자가 입력되었을 경우 알림을 띄워주고 해당 value를 지운다음 focus해주고 false로 리턴
     alert('학점 입력은 1~2자리의 숫자만 가능합니다.');
     creditInput.value="";
@@ -229,4 +226,95 @@ function majorCalculator() {
 
   document.getElementById('major_grade').innerText = majortotal.toFixed(2);
 
+}
+
+//저장된 성적 데이터를 json 배열로 변환하는 메소드
+function tableToJSON() {
+  //기초가 되는 table 불러오기
+  var table = document.getElementById('result')
+
+  //json 배열
+  var data = [];
+
+  //데이터 생성
+  var headers = [];
+  headers[0] = "과목";
+  headers[1] = "점수";
+  headers[2] = "학점";
+  headers[3] = "전공";
+
+  //각 tr에서 데이터의 값을 가져옴
+  for(var i=1; i<table.rows.length+1; i++) {
+      var tableRow = document.getElementById('tr'+i);
+      var rowData = {};
+
+      //tr 안의 td 데이터들을 가져옴
+      for(var j=0; j<=3; j++) {
+          rowData[headers[j]] = tableRow.childNodes[j].innerText;
+      }
+      data.push(rowData);
+  }
+
+  //json 변환 버튼을 누르면 textarea와 저장 버튼이 생기고 textarea에 json 배열이 출력됨
+  var jsonDiv = document.getElementById('cal_json')
+  jsonDiv.innerHTML = "<textarea id='jsonInput' style='width:100%;' rows='8'></textarea><input type='submit' value='Download' class='btn_reset_credit' onclick='saveTextAsFile();'>";
+  document.getElementById('jsonInput').innerText = JSON.stringify(data);
+}
+
+//출력된 json 배열을 저장
+function saveTextAsFile() {
+
+  //textarea에 출력된 내용을 가져옴
+	var textToWrite = document.getElementById("jsonInput").value;
+
+  //Blob 생성
+	var textFileAsBlob = new Blob([textToWrite]);
+
+  //날짜 출력방식 - json 저장할 때 파일명을 지정하기 위함
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1;
+  var yy = today.getFullYear().toString().substr(2,2);
+  var hh = today.getHours();
+  var mt = today.getMinutes();
+  var ss = today.getSeconds();
+
+  if(dd<10) {
+    dd='0'+dd
+  }
+  if(mm<10) {
+    mm='0'+mm
+  }
+  if(hh<10) {
+    hh='0'+hh
+  }
+  if(mt<10) {
+    mt='0'+mt
+  }
+  if(ss<10) {
+    ss='0'+ss
+  }
+
+  today = yy+mm+dd+'_'+hh+mt+ss;
+
+  //다운로드
+	var downloadLink = document.createElement("a");
+	downloadLink.download = "credit_calculator_"+ today + ".json";
+	downloadLink.innerHTML = "download file";
+
+  //다른 브라우저와의 호환성을 위한 옵션
+	if (window.webkitURL != null){
+		// Chrome allows the link to be clicked
+		// without actually adding it to the DOM.
+		  downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+	  } else {
+		// Firefox requires the link to be added to the DOM
+		// before it can be clicked.
+		  downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+		  downloadLink.onclick = destroyClickedElement;
+		  downloadLink.style.display = "none";
+		  document.body.appendChild(downloadLink);
+    }
+
+	downloadLink.click();
 }
